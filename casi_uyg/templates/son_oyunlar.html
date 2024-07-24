@@ -1,0 +1,54 @@
+{% extends 'casi_uyg/base.html' %}
+{% load static %}
+
+{% load days_of_week_filters %}
+
+
+{% block content %}
+    <div class="row mt-2">
+        <p class="h1 text-center">EN SON OYUNLAR</p>
+        <div class="col">
+            <p class="h1 text-center">YUNUS</p>
+            <hr class="border border-primary border-3 opacity-75">
+            <table class="table table-striped table-hover text-center">
+                <thead>
+                    {% for column in column_names %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                  </thead>
+                  <tbody>
+                    {% for row in results %}
+                    <tr>
+                        {% for value in row %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                        
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <p class="h1 text-center">DEMET</p>
+            <hr class="border border-primary border-3 opacity-75">
+            <table class="table table-striped table-hover text-center">
+                <thead>
+                    {% for column in column_names %}
+                    <th>{{ column }}</th>
+                {% endfor %}
+                  </thead>
+                  <tbody>
+                    {% for row in results2 %}
+                    <tr>
+                        {% for value in row %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                        
+                </tbody>
+            </table>
+        </div>
+    </div>
+ 
+{% endblock content %}

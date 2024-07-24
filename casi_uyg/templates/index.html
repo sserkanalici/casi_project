@@ -1,0 +1,188 @@
+{% extends 'casi_uyg/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row mt-2">
+        <div class="col">
+            <p class="h1 text-center">YUNUS</p>
+            <hr class="border border-primary border-3 opacity-75">
+            <table class="table table-striped table-hover text-center">
+                <thead>
+                    <tr>
+                      <th scope="col">Tarih</th>
+                      <th scope="col">Basılan Toplam Tutar</th>
+                      <th scope="col">Toplam Kazanç</th>
+                      <th scope="col">Kar/Zarar Bonus Dahil</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in veri %}
+                        <tr>
+                            <td>{{ i.tarih }}</td>
+                            <td>{{ i.toplam_basilan_tutar }} TL</td>
+                            <td>{{ i.toplam_kazanc }} TL</td>
+                            <td>{{ i.kar_zarar }} TL</td>
+                        </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">Veri bulunamadı.</td>
+                    </tr>
+                    {% endfor %}
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col">
+            <p class="h1 text-center">DEMET</p>
+            <hr class="border border-primary border-3 opacity-75">
+            <table class="table table-striped table-hover text-center">
+                <thead>
+                    <tr>
+                      <th scope="col">Tarih</th>
+                      <th scope="col">Basılan Toplam Tutar</th>
+                      <th scope="col">Toplam Kazanç</th>
+                      <th scope="col">Kar/Zarar Bonus Dahil</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in veri2 %}
+                        <tr>
+                            <td>{{ i.tarih }}</td>
+                            <td>{{ i.toplam_basilan_tutar }} TL</td>
+                            <td>{{ i.toplam_kazanc }} TL</td>
+                            <td>{{ i.kar_zarar }} TL</td>
+                        </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">Veri bulunamadı.</td>
+                    </tr>
+                    {% endfor %}
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <p class="h1 text-center">HESAPLARA GÖRE TOPLAM KAR/ZARAR</p>
+        <hr class="border border-primary border-3 opacity-75">
+        <div class="col">
+            <p class="h1 text-center">YUNUS</p>
+            <hr class="border border-primary border-3 opacity-75">
+            <table class="table table-striped table-hover text-center">
+                <thead>
+                    {% for column in column_names %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                  </thead>
+                  <tbody>
+                    {% for row in yunus_total %}
+                        <tr>
+                            {% for value in row %}
+                                <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">Veri bulunamadı.</td>
+                    </tr>
+                    {% endfor %}
+                   
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <p class="h1 text-center">DEMET</p>
+            <hr class="border border-primary border-3 opacity-75">
+            <table class="table table-striped table-hover text-center">
+                <thead>
+                    {% for column in column_names %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                  </thead>
+                  <tbody>
+                    {% for row in demet_total %}
+                        <tr>
+                            {% for value in row %}
+                                <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">Veri bulunamadı.</td>
+                    </tr>
+                    {% endfor %}
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col">
+            <p class="h1 text-center">GÜNLERE GÖRETOPLAM KAR/ZARAR</p>
+            <hr class="border border-primary border-3 opacity-75">
+            <table class="table table-striped table-hover text-center">
+                <thead>
+                    <tr>
+                      <th scope="col">Tarih</th>
+                      <th scope="col">Toplam Kar/Zarar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for a in toplam %}
+                        <tr>
+                            <td>{{ a.tarih }}</td>
+                            <td>{{ a.kar_zarar }} TL</td>
+                        </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">Veri bulunamadı.</td>
+                    </tr>
+                    {% endfor %}
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col">
+            <p class="h1 text-center">TÜM GÜNLER KAR/ZARAR</p>
+            <hr class="border border-primary border-3 opacity-75">
+            <table class="table table-striped table-hover text-center">
+                <thead>
+                    <tr>
+                      <th scope="col">Gün Sayısı</th>
+                      <th scope="col">Total Kar/Zarar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                        <tr>
+                            <td>{{ total_days }}</td>
+                            <td>{{ total }} TL</td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% comment %} <div class="row mt-2">
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src="{% static 'images/gate_of_casibom.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+                </ul>
+                <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+        </div>
+    </div> {% endcomment %}
+  
+{% endblock content %}
